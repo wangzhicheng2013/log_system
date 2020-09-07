@@ -17,5 +17,13 @@ public:
         return true;
     }
 };
-#define LOG_INFO(format_str, ...) { auto str = G_STRING_UTILITY.get_format_str(format_str, __VA_ARGS__); \
+#define LOG_INFO(format_str, ...) { auto str = std::move(G_STRING_UTILITY.get_format_str(format_str, __VA_ARGS__)); \
                                     LOG4CXX_INFO(G_LOG_FILE, str.c_str()); }
+
+#define LOG_DEBUG(format_str, ...) { auto str = std::move(G_STRING_UTILITY.get_format_str(format_str, __VA_ARGS__)); \
+                                    LOG4CXX_DEBUG(G_LOG_FILE, str.c_str()); }
+
+#define LOG_WARN(format_str, ...) { auto str = std::move(G_STRING_UTILITY.get_format_str(format_str, __VA_ARGS__)); \
+                                    LOG4CXX_WARN(G_LOG_FILE, str.c_str()); }
+
+#define LOG_ERROR(format_str, ...) { auto str = std::move(G_STRING_UTILITY.get_format_str(format_str, __VA_ARGS__)); LOG4CXX_ERROR(G_LOG_FILE, str.c_str()); }
